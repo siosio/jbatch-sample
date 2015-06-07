@@ -1,0 +1,9 @@
+<job id="db-access-job" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+  <step id="clear-users">
+    <batchlet ref="dbAccessBatchlet">
+      <properties>
+        <property name="count" value="50" />
+      </properties>
+    </batchlet>
+  </step>
+</job>

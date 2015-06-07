@@ -1,0 +1,16 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:0.12.213'
+  }
+}
+
+apply plugin: 'war'
+apply plugin: 'kotlin'
+
+dependencies {
+  compile 'org.jetbrains.kotlin:kotlin-stdlib:0.12.213'
+}
+

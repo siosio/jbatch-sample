@@ -1,0 +1,4 @@
+rootProject.name = 'jbatch-sample'
+include 'batch-application'
+include 'batch-admin'
+

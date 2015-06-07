@@ -1,0 +1,26 @@
+subprojects {
+  group 'siosio.jbatch'
+  version '1.0-SNAPSHOT'
+
+  apply plugin: 'java'
+  apply plugin: 'idea'
+
+  sourceCompatibility = 1.8
+
+  repositories {
+    mavenCentral()
+  }
+
+  configurations {
+    eeApi
+  }
+
+  dependencies {
+    eeApi 'javax:javaee-api:7.0'
+    eeApi 'org.eclipse.persistence:eclipselink:2.6.0'
+  }
+
+  sourceSets.main.compileClasspath += configurations.eeApi
+  sourceSets.test.compileClasspath += configurations.eeApi
+  idea.module.scopes.PROVIDED.plus += [configurations.eeApi]
+}

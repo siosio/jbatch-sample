@@ -32,7 +32,8 @@ public class DbAccessBatchletTest {
     @Deployment
     public static Archive<?> createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addPackages(true, "siosio")
+                .addClass(DbAccessBatchlet.class)
+                .addClass(UserEntity.class)
                 .addAsResource("test-persistence.xml", "META-INF/persistence.xml");
     }
 

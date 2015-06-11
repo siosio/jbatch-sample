@@ -8,6 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
+@NamedQuery(name = "findUsersAll", query = "select u from UserEntity u order by u.id")
 public class UserEntity {
 
     private Long id;
@@ -15,6 +16,11 @@ public class UserEntity {
     private String name;
 
     public UserEntity() {
+    }
+
+    public UserEntity(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public UserEntity(String name) {

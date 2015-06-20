@@ -18,6 +18,8 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import siosio.TestHelper;
 import siosio.entity.UserEntity;
@@ -30,10 +32,15 @@ import org.junit.runner.RunWith;
 public class DbAccessBatchletTest {
 
     @Deployment
-    public static Archive<?> createDeployment() {
-        return ShrinkWrap.create(WebArchive.class, "test.war")
+    public static WebArchive createDeployment() {
+        return ShrinkWrap.create(WebArchive.class, "jbatch.war")
+                //.addPackage("siosio")
                 .addClass(DbAccessBatchlet.class)
                 .addClass(UserEntity.class)
+                .addClass(TestHelper.class)
+                .addAsResource("META-INF/batch-jobs/db-access-job.xml")
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsWebInfResource("jbossas-ds.xml")
                 .addAsResource("test-persistence.xml", "META-INF/persistence.xml");
     }
 
@@ -49,6 +56,7 @@ public class DbAccessBatchletTest {
         final Query query = em.createNativeQuery("delete from USERS");
         query.executeUpdate();
         utx.commit();
+        em.clear();
     }
 
     @Test
@@ -64,8 +72,11 @@ public class DbAccessBatchletTest {
     @Test
     public void testFailed() throws Exception {
         utx.begin();
-        em.persist(new UserEntity(35L, "重複するとおもわれるデータ"));
-        em.persist(new UserEntity(85L, "重複するとおもわれるデータ"));
+        final Query query = em.createNativeQuery("insert into USERS VALUES (?, ?)");
+        query.setParameter(1, 35L)
+                .setParameter(2, "重複すると思われるデータ")
+                .executeUpdate();
+        query.setParameter(1, 85L).executeUpdate();
         utx.commit();
 
         final JobExecution jobExecution = TestHelper.start("db-access-job");

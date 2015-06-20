@@ -17,7 +17,6 @@ subprojects {
 
   dependencies {
     eeApi 'javax:javaee-api:7.0'
-    eeApi 'org.eclipse.persistence:eclipselink:2.6.0'
   }
 
   sourceSets.main.compileClasspath += configurations.eeApi

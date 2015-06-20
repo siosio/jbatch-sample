@@ -2,15 +2,15 @@
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
 
   <persistence-unit name="batch" transaction-type="JTA">
-    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <jta-data-source>jdbc/jbatch</jta-data-source>
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <jta-data-source>java:/jbatch</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="create" />
-      <property name="eclipselink.logging.level" value="fine" />
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
+      <property name="showSql" value="true" />
 
-      <property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
-      <property name="eclipselink.jdbc.batch-writing.size" value="25"/>
+      <property name="hibernate.jdbc.batch_size" value="1000"/>
+      <property name="order_inserts" value="true"></property>
     </properties>
   </persistence-unit>
 

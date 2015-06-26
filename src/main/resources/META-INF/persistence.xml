@@ -7,10 +7,7 @@
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
-      <property name="showSql" value="true" />
-
       <property name="hibernate.jdbc.batch_size" value="1000"/>
-      <property name="order_inserts" value="true"></property>
     </properties>
   </persistence-unit>
 

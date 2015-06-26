@@ -1,7 +1,8 @@
 <job id="chunk-sample" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
   <step id="step">
-    <chunk>
+    <chunk item-count="3">
       <reader ref="sampleReader"/>
+      <processor ref="sampleProcessor" />
       <writer ref="userWriter"/>
     </chunk>
   </step>

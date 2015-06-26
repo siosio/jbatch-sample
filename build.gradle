@@ -1,25 +1,44 @@
-subprojects {
-  group 'siosio.jbatch'
-  version '1.0-SNAPSHOT'
+group 'siosio.jbatch'
+version '1.0-SNAPSHOT'
 
-  apply plugin: 'java'
-  apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'war'
 
-  sourceCompatibility = 1.8
+sourceCompatibility = 1.8
 
-  repositories {
-    mavenCentral()
+repositories {
+  mavenCentral()
+  maven { url "https://repository.jboss.org/nexus/content/repositories/releases/" }
+  maven { url 'http://repo.gradle.org/gradle/libs-releases-local' }
+}
+
+dependencies {
+
+  runtime 'org.slf4j:slf4j-api:1.7.12'
+  runtime 'ch.qos.logback:logback-classic:1.0.13'
+
+  testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.8.Final'
+  testRuntime 'org.wildfly.arquillian:wildfly-arquillian-common:1.0.0.CR1'
+  testRuntime 'org.wildfly:wildfly-arquillian-container-embedded:8.2.0.Final'
+  testRuntime 'org.jboss.spec:jboss-javaee-all-7.0:1.0.3.Final'
+  testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-gradle-depchain:2.2.0-beta-2'
+
+  testCompile 'junit:junit:4.12'
+
+  providedCompile 'javax:javaee-api:7.0'
+}
+
+test {
+  systemProperties['java.util.logging.manager'] = 'org.jboss.logmanager.LogManager'
+}
+
+sourceSets.test {
+  resources {
+    srcDirs += ['src/test/resources-jbossas-managed']
   }
+}
 
-  configurations {
-    eeApi
-  }
-
-  dependencies {
-    eeApi 'javax:javaee-api:7.0'
-  }
-
-  sourceSets.main.compileClasspath += configurations.eeApi
-  sourceSets.test.compileClasspath += configurations.eeApi
-  idea.module.scopes.PROVIDED.plus += [configurations.eeApi]
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.4'
 }

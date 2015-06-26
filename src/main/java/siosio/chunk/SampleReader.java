@@ -4,8 +4,6 @@ import javax.batch.api.chunk.AbstractItemReader;
 import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 
-import siosio.entity.UserEntity;
-
 @Dependent
 @Named
 public class SampleReader extends AbstractItemReader {
@@ -15,8 +13,8 @@ public class SampleReader extends AbstractItemReader {
     @Override
     public Object readItem() throws Exception {
         index++;
-        if (index < 10) {
-            return new UserEntity("name_" + index);
+        if (index <= 10) {
+            return index;
         }
         return null;
     }

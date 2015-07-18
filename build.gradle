@@ -1,13 +1,24 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:0.12.1218"
+  }
+}
+
 group 'siosio.jbatch'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'war'
+apply plugin: 'kotlin'
 
 sourceCompatibility = 1.8
 
 repositories {
+  mavenLocal()
   mavenCentral()
   maven { url "https://repository.jboss.org/nexus/content/repositories/releases/" }
   maven { url 'http://repo.gradle.org/gradle/libs-releases-local' }
@@ -19,26 +30,29 @@ dependencies {
   runtime 'ch.qos.logback:logback-classic:1.0.13'
 
   testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.8.Final'
-  testRuntime 'org.wildfly.arquillian:wildfly-arquillian-common:1.0.0.CR1'
+  testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-gradle-depchain:2.2.0-beta-3'
+
   testRuntime 'org.wildfly:wildfly-arquillian-container-embedded:8.2.0.Final'
+  testRuntime 'org.wildfly.arquillian:wildfly-arquillian-common:1.0.0.CR1'
   testRuntime 'org.jboss.spec:jboss-javaee-all-7.0:1.0.3.Final'
-  testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-gradle-depchain:2.2.0-beta-2'
 
   testCompile 'junit:junit:4.12'
 
   providedCompile 'javax:javaee-api:7.0'
+
+  compile "org.jetbrains.kotlin:kotlin-stdlib:0.12.1218"
 }
 
 test {
   systemProperties['java.util.logging.manager'] = 'org.jboss.logmanager.LogManager'
 }
 
-sourceSets.test {
-  resources {
-    srcDirs += ['src/test/resources-jbossas-managed']
-  }
+sourceSets {
+  main.java.srcDirs += 'src/main/kotlin'
+  test.resources.srcDirs += ['src/test/resources-jbossas-managed']
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.4'
+  gradleVersion = '2.5'
 }
+

@@ -30,11 +30,15 @@ public class SampleChunkTest {
 
     @Deployment
     public static WebArchive createDeployment() {
-        return ShrinkWrap.create(EmbeddedGradleImporter.class)
+
+        System.getProperties().remove("javax.xml.parsers.SAXParserFactory");
+        final WebArchive webArchive = ShrinkWrap.create(EmbeddedGradleImporter.class)
                 .forThisProjectDirectory()
                 .importBuildOutput()
                 .as(WebArchive.class)
                 .addClasses(TestHelper.class);
+        System.setProperty("javax.xml.parsers.SAXParserFactory", "__redirected.__SAXParserFactory");
+        return webArchive;
     }
 
     @PersistenceContext

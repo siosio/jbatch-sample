@@ -1,0 +1,8 @@
+<job id="stoppable-batchlet" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+  <step id="batchlet">
+    <listeners>
+      <listener ref="logStepListener" />
+    </listeners>
+    <batchlet ref="stoppableBatchlet" />
+  </step>
+</job>

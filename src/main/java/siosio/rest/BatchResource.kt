@@ -1,19 +1,21 @@
 package siosio.rest
 
+import javax.batch.operations.NoSuchJobExecutionException
 import javax.batch.runtime.BatchRuntime
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.PathParam
 import javax.ws.rs.core.Response
 
-public class BatchResource {
+@Path("/")
+open public class BatchResource {
 
   /**
    * ジョブを実行する
    */
   @GET
   @Path("/run/{jobName}")
-  public fun start(@PathParam("jobName") jobName: String): String {
+  open public fun start(PathParam("jobName") jobName: String): String {
     val jobOperator = BatchRuntime.getJobOperator()
     val executionId = jobOperator.start(jobName, null)
     return executionId.toString()
@@ -24,7 +26,7 @@ public class BatchResource {
    */
   @GET
   @Path("/stop/{executionId}")
-  fun stop(@PathParam("executionId") executionId:Long): Response {
+  open fun stop(PathParam("executionId") executionId: Long): Response {
     val jobOperator = BatchRuntime.getJobOperator()
     jobOperator.stop(executionId)
     return Response.ok().build()

@@ -1,5 +1,6 @@
 package siosio;
 
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import javax.batch.operations.JobOperator;
@@ -19,5 +20,18 @@ public class TestHelper {
             TimeUnit.MILLISECONDS.sleep(500);
         }
         return jobExecution;
+    }
+
+    public static JobExecution start(String jobId, Properties parameter) throws Exception {
+
+        final JobOperator operator = BatchRuntime.getJobOperator();
+        final long executionId = operator.start(jobId, parameter);
+
+        final JobExecution jobExecution = operator.getJobExecution(executionId);
+        while (jobExecution.getEndTime() == null) {
+            TimeUnit.MILLISECONDS.sleep(500);
+        }
+        return jobExecution;
+
     }
 }

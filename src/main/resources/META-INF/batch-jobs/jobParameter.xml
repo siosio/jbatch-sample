@@ -1,0 +1,9 @@
+<job id="jobParameter" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+  <step id="myStep">
+    <batchlet ref="jobParameterSampleBatchlet">
+      <properties>
+        <property name="param" value="#{jobParameters['job-param']}" />
+      </properties>
+    </batchlet>
+  </step>
+</job>

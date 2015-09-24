@@ -13,9 +13,7 @@ import javax.batch.runtime.context.StepContext
 import javax.enterprise.context.Dependent
 import javax.inject.Inject
 import javax.inject.Named
-import javax.servlet.jsp.jstl.sql.SQLExecutionTag
 import javax.sql.DataSource
-import kotlin.platform.platformStatic
 import kotlin.properties.Delegates
 
 @Dependent
@@ -23,7 +21,7 @@ import kotlin.properties.Delegates
 public class StoppableBatchlet : AbstractBatchlet() {
 
   companion object {
-    private val LOGGER: Logger = LoggerFactory.getLogger(javaClass<StoppableBatchlet>())
+    private val LOGGER: Logger = LoggerFactory.getLogger(StoppableBatchlet::class.java)
   }
 
   @Resource(lookup = "java:/jbatch")

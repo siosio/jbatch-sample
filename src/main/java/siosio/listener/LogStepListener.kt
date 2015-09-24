@@ -8,14 +8,13 @@ import javax.batch.runtime.context.StepContext
 import javax.enterprise.context.Dependent
 import javax.inject.Inject
 import javax.inject.Named
-import kotlin.platform.platformStatic
 
 @Dependent
 @Named
 public class LogStepListener : AbstractStepListener() {
 
   companion object {
-    private val LOGGER: Logger = LoggerFactory.getLogger(javaClass<LogStepListener>())
+    private val LOGGER: Logger = LoggerFactory.getLogger(LogStepListener::class.java)
   }
 
   @Inject

@@ -1,7 +1,14 @@
 <job id="stoppable-chunk" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
   <step id="myStep">
+    <listeners>
+      <listener ref="logOutputItemReadListener" />
+    </listeners>
     <chunk item-count="5">
-      <reader ref="endlessReader"/>
+      <reader ref="sampleReader">
+        <properties>
+          <property name="max" value="30" />
+        </properties>
+      </reader>
       <writer ref="standardOutputWriter"/>
     </chunk>
   </step>

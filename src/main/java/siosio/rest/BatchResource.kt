@@ -21,6 +21,17 @@ open public class BatchResource {
   }
 
   /**
+   * ジョブを再実行する
+   */
+  @GET
+  @Path("/restart/{executionId}")
+  open fun restart(@PathParam("executionId") executionId: Long): String {
+    val jobOperator = BatchRuntime.getJobOperator()
+    val restartedExecutionId = jobOperator.restart(executionId, null)
+    return restartedExecutionId.toString()
+  }
+
+  /**
    * 実行中のジョブを停止する。
    */
   @GET

@@ -1,0 +1,8 @@
+<job id="stoppable-chunk" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+  <step id="myStep">
+    <chunk item-count="5">
+      <reader ref="endlessReader"/>
+      <writer ref="standardOutputWriter"/>
+    </chunk>
+  </step>
+</job>

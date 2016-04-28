@@ -1,3 +1,5 @@
 rootProject.name = 'jbatch-sample'
 include 'batchlet-sample'
+include 'dbaccess-batchlet-sample'
+include 'common'
 

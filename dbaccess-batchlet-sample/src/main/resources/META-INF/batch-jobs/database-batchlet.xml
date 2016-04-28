@@ -1,0 +1,18 @@
+<job id="database-batchlet.xml" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+  <properties>
+    <property name="database.url" value="jdbc:h2:./database-batchlet;DB_CLOSE_DELAY=-1" />
+    <property name="database.user" value="sa" />
+    <property name="database.password" value="password" />
+  </properties>
+
+  <step id="create-table" next="insert-table">
+    <batchlet ref="createDatabaseBatchlet" />
+  </step>
+  <step id="insert-table" next="print-table">
+    <batchlet ref="dbAccessBatchlet" />
+  </step>
+
+  <step id="print-table">
+    <batchlet ref="printDatabaseBatchlet" />
+  </step>
+</job>

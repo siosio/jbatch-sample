@@ -1,2 +1,3 @@
 rootProject.name = 'jbatch-sample'
+include 'batchlet-sample'
 

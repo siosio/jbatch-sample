@@ -17,9 +17,11 @@ subprojects {
 
   apply plugin: 'idea'
   apply plugin: 'kotlin'
-  apply plugin: 'application'
 
-  mainClassName = "org.jberet.se.Main"
+  if (project.name != 'common') {
+    apply plugin: 'application'
+    mainClassName = "org.jberet.se.Main"
+  }
 
   sourceCompatibility = 1.8
 

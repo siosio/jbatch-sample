@@ -1,0 +1,9 @@
+<job id="stop-batchlet" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+  <step id="myStep">
+    <batchlet ref="stopBatchlet">
+      <properties>
+        <property name="restart" value="#{jobParameters['restart']}?:false" />
+      </properties>
+    </batchlet>
+  </step>
+</job>

@@ -1,1 +1,3 @@
-
+dependencies {
+  provided 'org.hibernate:hibernate-core:5.1.0.Final'
+}

@@ -1,0 +1,14 @@
+<job id="jpa-sample" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+
+  <step id="createDatabase" next="jpaSample">
+    <batchlet ref="createDatabaseBatchlet" />
+  </step>
+  <step id="jpaSample" next="printDatabase">
+    <batchlet ref="jpaSampleBatchlet">
+    </batchlet>
+  </step>
+
+  <step id="printDatabase">
+    <batchlet ref="printDatabaseBatchlet" />
+  </step>
+</job>

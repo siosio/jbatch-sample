@@ -36,6 +36,9 @@ subprojects {
     provided
   }
 
+  sourceSets.main.compileClasspath += configurations.provided
+  sourceSets.test.compileClasspath += configurations.provided
+
   sourceSets {
     main {
       output.classesDir = output.resourcesDir

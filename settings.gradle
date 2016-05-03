@@ -3,4 +3,5 @@ include 'batchlet-sample'
 include 'batchlet-database-sample'
 include 'common'
 include 'batchlet-stop-sample'
+include 'batchlet-jpa-sample'
 

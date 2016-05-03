@@ -1,0 +1,8 @@
+
+dependencies {
+  compile 'org.hibernate:hibernate-entitymanager:5.1.0.Final'
+}
+
+run {
+  args "jpa-sample"
+}

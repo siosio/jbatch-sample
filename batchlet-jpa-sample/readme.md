@@ -20,5 +20,9 @@ rootプロジェクト配下で、以下のコマンドで実行できます。
 ログ（標準出力）に、以下のメッセージが出力出来たら実行成功です。
 
 ```
-batchlet-jpa-sample
+23:14:12.544 [jberet-1] DEBUG org.hibernate.internal.util.EntityPrinter - siosio.User{name=name_3, id=3}
+23:14:12.544 [jberet-1] DEBUG org.hibernate.internal.util.EntityPrinter - siosio.User{name=name_4, id=4}
+23:14:12.544 [jberet-1] DEBUG org.hibernate.internal.util.EntityPrinter - siosio.User{name=name_5, id=5}
+23:14:12.544 [jberet-1] DEBUG org.hibernate.internal.util.EntityPrinter - siosio.User{name=name_1, id=1}
+23:14:12.544 [jberet-1] DEBUG org.hibernate.internal.util.EntityPrinter - siosio.User{name=name_2, id=2}
 ```

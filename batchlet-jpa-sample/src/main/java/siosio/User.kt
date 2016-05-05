@@ -10,7 +10,7 @@ import javax.persistence.*
 )
 open class User(
     @Id
-    @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     var id: Long?, var name: String?) {
 
   constructor() : this(null, null)

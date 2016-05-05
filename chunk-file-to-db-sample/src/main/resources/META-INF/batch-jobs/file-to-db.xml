@@ -1,0 +1,21 @@
+<job id="file-to-db" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+  <properties>
+    <property name="database.url" value="jdbc:h2:./file-to-db;DB_CLOSE_DELAY=-1" />
+    <property name="database.user" value="sa" />
+    <property name="database.password" value="password" />
+  </properties>
+
+  <step id="setup" next="registerUser">
+    <batchlet ref="createDatabaseBatchlet" />
+  </step>
+  <step id="registerUser" next="print">
+    <chunk>
+      <reader ref="csvReader" />
+      <processor ref="processor" />
+      <writer ref="databaseWriter" />
+    </chunk>
+  </step>
+  <step id="print">
+    <batchlet ref="printDatabaseBatchlet" />
+  </step>
+</job>

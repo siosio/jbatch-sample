@@ -1,0 +1,16 @@
+<job id="chunk-next-element-sample" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+  <step id="step1">
+    <chunk>
+      <reader ref="reader" />
+      <writer ref="writer" />
+    </chunk>
+    <next on="ok" to="step2" />
+    <next on="*" to="step3" />
+  </step>
+  <step id="step2">
+    <batchlet ref="step2Batchlet" />
+  </step>
+  <step id="step3">
+    <batchlet ref="step3Batchlet" />
+  </step>
+</job>

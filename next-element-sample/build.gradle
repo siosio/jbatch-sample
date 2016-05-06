@@ -1,0 +1,16 @@
+run {
+  args 'batchlet-next-element-sample'
+}
+
+task run_batchlet(type: JavaExec) {
+  classpath = sourceSets.main.runtimeClasspath
+  main = 'org.jberet.se.Main'
+  args 'batchlet-next-element-sample'
+}
+
+task run_chunk(type: JavaExec) {
+  classpath = sourceSets.main.runtimeClasspath
+  main = 'org.jberet.se.Main'
+  args 'chunk-next-element-sample'
+}
+[run_batchlet, run_chunk]*.group = 'application'

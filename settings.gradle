@@ -5,4 +5,5 @@ include 'common'
 include 'batchlet-stop-sample'
 include 'batchlet-jpa-sample'
 include 'chunk-file-to-db-sample'
+include 'next-element-sample'
 
